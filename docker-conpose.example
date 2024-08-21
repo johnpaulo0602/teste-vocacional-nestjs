@@ -1,0 +1,29 @@
+version: '3'
+services:
+  match-carrer-nestjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '0000:0000'
+    environment:
+      - MONGO_URI=
+      - SWAGGER_PATH=
+    networks:
+      - match-carrer
+    container_name: match-carrer-nestjs
+
+  personal_mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+    ports:
+      - '27017:27017'
+      - '0.0.0.0:27017:27017'
+    networks:
+      - match-carrer
+    container_name: match-carrer-mongodb
+
+networks:
+  match-carrer:
